@@ -6,10 +6,10 @@ export default function Layout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#F23064', 
+        tabBarActiveTintColor: '#5826e0', 
         tabBarInactiveTintColor: '#FFFFFF',
         tabBarStyle: {
-          backgroundColor: '#1a1a1a', 
+          backgroundColor: '#030d1d', 
           borderTopWidth: 0,        
           height: 60,               
           paddingBottom: 8,
@@ -17,38 +17,41 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="salas"
+        name="principal"
         options={{
-          title: 'Salas',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? "grid" : "grid-outline"} size={24} color={color} />
+          title: 'Início',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name={"stats-chart-outline"} size={24} color={color} />
           ),
         }}
       />
       
       <Tabs.Screen
-        name="reservar"
+        name="energia"
         options={{
-          title: 'Reservar',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? "calendar" : "calendar-outline"} size={24} color={color} />
+          title: 'Combustível e Energia',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name={"battery-charging-sharp"} size={24} color={color} />
           ),
         }}
       />
       
       <Tabs.Screen
-        name="disponibilidade"
+        name="sensores"
         options={{
-          href: null
+          title: 'Sensores',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name={"analytics-sharp"} size={24} color={color} />
+          ),
         }}
       />
       
       <Tabs.Screen
-        name="minhas-reservas"
+        name="orbita"
         options={{
-          title: 'Minhas Reservas',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? "list" : "list-outline"} size={24} color={color} />
+          title: 'Órbita',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name={"globe-outline"} size={24} color={color} />
           ),
         }}
       />

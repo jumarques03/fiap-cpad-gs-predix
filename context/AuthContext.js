@@ -10,24 +10,27 @@ export function AuthProvider({ children }) {
     // Carregar ao abrir o app
     useEffect(() => {
         carregarUsuarios();
-        carregarSessao();
+        carregarSessaoUsuario();
     }, []);
 
     // Carrega lista de usuários cadastrados ---> serve para ver se usuário já possui conta
     const carregarUsuarios = async () => {
         const dados = await AsyncStorage.getItem('usuarios');
+
         if (dados) {
             const listaUsuarios = JSON.parse(dados); 
             setUsuarios(listaUsuarios);
             return listaUsuarios;
         }
+
+        setUsuarios([]);
         return [];
     };
 
     const cadastrarUsuario = async (novoUsuario) => {
         const usuariosAtuais = await carregarUsuarios();
 
-        const usuariosExistente = usuariosAtuais.find(usuario => usuario.email === novoUsuario.email || usuario.rm === novoUsuario.rm);
+        const usuariosExistente = usuariosAtuais.find(usuario => usuario.email === novoUsuario.email);
 
             if (!usuariosExistente) {
                 const novaListaUsuarios = [...usuariosAtuais, novoUsuario];
@@ -38,13 +41,13 @@ export function AuthProvider({ children }) {
             return false;
     };
 
-    // Salva usuário --> serve para cadastro, recebe o objeto usuário {nome, email, rm, senha}
+    // Salva usuário --> serve para cadastro, recebe o objeto usuário {email, senha}
     const salvarListaUsuarios = async (lista) => {    
         await AsyncStorage.setItem('usuarios', JSON.stringify(lista));
     };
 
     // Carrega a sessão (pode retornar o usuário logado ou null) ---> serve para ver se entra primeiro na aba de login ou se vai direto para a tela de salas
-    const carregarSessao = async () => {
+    const carregarSessaoUsuario = async () => {
         const dados = await AsyncStorage.getItem('sessao');
         if (dados) {
             const sessaoAtual = JSON.parse(dados);
@@ -54,9 +57,9 @@ export function AuthProvider({ children }) {
         return null;
     };
 
-    const salvarSessao = async (usuarioLogado) => { 
-        await AsyncStorage.setItem('sessao', JSON.stringify(usuarioLogado));
-        setSessao(usuarioLogado);
+    const salvarSessaoUsuario = async (dadosParaSalvar) => { 
+        await AsyncStorage.setItem('sessao', JSON.stringify(dadosParaSalvar));
+        setSessao(dadosParaSalvar);
     };
 
     // Remove o usuário da sessão  ---> deve ser chamado assim que o usuário apertar o botão de logout
@@ -72,7 +75,7 @@ export function AuthProvider({ children }) {
                 sessao,
                 cadastrarUsuario,
                 logoutUsuario,
-                salvarSessao
+                salvarSessaoUsuario
             }}>
             {children}
         </authContext.Provider>

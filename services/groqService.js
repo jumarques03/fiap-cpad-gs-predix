@@ -1,0 +1,100 @@
+// services/groqService.js
+import axios from 'axios';
+
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+
+const GROQ_API_KEY = apiKey; 
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const MODEL = 'llama-3.1-8b-instant';
+
+const SYSTEM_PROMPT = `
+Você é o assistente de análise preditiva aeroespacial da plataforma PREDIX.
+Sua única função é avaliar os dados passados (séries temporais) enviadas pelo usuário e projetar as tendências e riscos futuros dos sistemas.
+
+DIRETRIZES DE ANÁLISE:
+1. Pegue as listas de dados passados (combustível, estabilidade orbital, temperatura, umidade, pressão, radiação) e identifique padrões de comportamento (ex: consumo acentuado, oscilação perigosa ou aquecimento contínuo).
+2. Projete o cenário de risco para as próximas horas (ex: risco de exaustão de combustível, risco de colisão por desvio orbital ou estabilização térmica).
+
+REGRAS DE SAÍDA:
+- Foque estritamente em TENDÊNCIAS E PREVISÕES DE LONGO PRAZO. Não faça alertas de valores atuais (o sistema local já faz isso).
+- Emita um parecer puramente técnico, lógico, seco e matemático. Limite-se a no máximo 3 ou 4 linhas de texto corrido.
+- Se houver riscos futuros baseados no histórico, inicie com: "⚠️ PROJEÇÃO PREDITIVA DE RISCO:".
+- Se o histórico indicar segurança nas próximas janelas, inicie com: "✅ TENDÊNCIA HISTÓRICA ESTÁVEL:".
+
+Retorne EXCLUSIVAMENTE um objeto JSON válido, sem blocos de código markdown ou caracteres extras:
+{
+  "textoAnalise": "Seu parecer de tendência preditiva estruturado aqui."
+}
+`;
+
+export async function analisarTelemetria(dadosAtuais, dadosPassados, limitesMissao) {
+  // Tratamento preventivo para evitar o Erro 400 caso os dados venham nulos ou indefinidos do contexto
+  if (!dadosAtuais || !dadosPassados) {
+    return "✅ Aguardando carregamento dos dados históricos para análise preditiva...";
+  }
+
+  try {
+    // Sanitização e garantia de fallback para formatos limpos aceitos pelo JSON da API
+    const combustivel = dadosAtuais.combustivel ?? 0;
+    const temperatura = dadosAtuais.temperatura ?? 0;
+    const pressao = dadosAtuais.pressao ?? 0;
+    const radiacao = dadosAtuais.radiacao ?? 0;
+    const umidade = dadosAtuais.umidade ?? 0;
+    const desvioOrbital = dadosAtuais.desvioOrbital ?? 0;
+
+    const histCombustivel = Array.isArray(dadosPassados.consumo_semanal_combustivel) ? dadosPassados.consumo_semanal_combustivel : [];
+    const histOrbita = Array.isArray(dadosPassados.historico_estabilidade_orbital_km_min) ? dadosPassados.historico_estabilidade_orbital_km_min : [];
+    const histTemp = Array.isArray(dadosPassados.historico_temperatura_24h) ? dadosPassados.historico_temperatura_24h : [];
+
+    const promptDados = {
+      valores_atuais: { combustivel, temperatura, pressao, radiacao, umidade, desvioOrbital },
+      series_temporais_passadas: { histCombustivel, histOrbita, histTemp },
+      limites_configurados: {
+        minCombustivel: limitesMissao?.minCombustivel ?? "0",
+        minEnergia: limitesMissao?.minEnergia ?? "0",
+        minTemperatura: limitesMissao?.minTemperatura ?? "0",
+        maxTemperatura: limitesMissao?.maxTemperatura ?? "0",
+        maxRadiacao: limitesMissao?.maxRadiacao ?? "0",
+        minUmidade: limitesMissao?.minUmidade ?? "0",
+        minPressao: limitesMissao?.minPressao ?? "0",
+        maxDesvioOrbital: limitesMissao?.maxDesvioOrbital ?? "0"
+      }
+    };
+
+    const response = await axios.post(
+      GROQ_URL,
+      {
+        model: MODEL,
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'user', content: JSON.stringify(promptDados) } // Enviado como string JSON limpa e estruturada
+        ],
+        response_format: { type: 'json_object' },
+        max_tokens: 350,
+        temperature: 0.0
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        timeout: 7000
+      }
+    );
+
+    let content = response.data.choices[0].message.content.trim();
+    
+    // Tratamento caso a IA ignore as diretrizes e devolva o bloco cercado por ```json ... ```
+    if (content.startsWith("```")) {
+      content = content.replace(/^```json/, "").replace(/```$/, "").trim();
+    }
+
+    const jsonFinal = JSON.parse(content);
+    return jsonFinal.textoAnalise || "✅ SISTEMA DE TELEMETRIA: Dados operacionais dentro da curva de estabilidade.";
+
+  } catch (error) {
+    console.error("Erro na chamada do Groq:", error?.response?.data || error.message);
+    return "⚠️ ERRO PREDITIVO: Falha temporária na conexão ou limite de requisições do subsistema PredixAI.";
+  }
+}

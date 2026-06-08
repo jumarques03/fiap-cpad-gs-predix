@@ -2,8 +2,7 @@ import { Slot, useRouter, useSegments } from "expo-router";
 import { useContext, useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { authContext, AuthProvider } from "../context/AuthContext";
-import { ReservasProvider } from "../context/ReservasContext";
-import { SalasProvider } from "../context/SalasContext";
+import { MissionProvider } from "../context/MissionContext";
 
 function RootNavigator() {
   const { sessao, usuarios } = useContext(authContext);
@@ -11,40 +10,34 @@ function RootNavigator() {
   const router = useRouter();
 
   useEffect(() => {
-    // Se os usuários ainda não foram carregados do Storage, aguarda
     if (!usuarios) return;
 
     const estaNaAuth = segments[0] === "(auth)";
 
     if (!sessao && !estaNaAuth) {
-      // Sem sessão e fora da pasta auth -> vai para Login
       router.replace("/(auth)/login");
     } else if (sessao && estaNaAuth) {
-      // Com sessão e tentando entrar na pasta auth -> vai para Salas
-      router.replace("/(tabs)/salas");
+      router.replace("/(mission)/entrarMissao");
     }
   }, [sessao, segments, usuarios]);
 
-  // Enquanto a lista de usuários ou a sessão estão sendo lidas do AsyncStorage
-  if (!usuarios) {
+  if (usuarios === null) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", backgroundColor: "#262626" }}>
-        <ActivityIndicator size="large" color="#F23064" />
+      <View style={{ flex: 1, justifyContent: "center", backgroundColor: "#311f7b" }}>
+        <ActivityIndicator size="large" color="#4030f2" />
       </View>
     );
   }
 
-  return <Slot />;
+  return <Slot/>;
 }
 
 export default function Layout() {
   return (
     <AuthProvider>
-      <ReservasProvider>
-        <SalasProvider>
-          <RootNavigator />
-        </SalasProvider>
-      </ReservasProvider>
+      <MissionProvider>
+        <RootNavigator/>
+      </MissionProvider>
     </AuthProvider>
   );
 }
