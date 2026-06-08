@@ -3,7 +3,7 @@
 ### Global Solution 2026.1 — Cross-Platform Application Development | FIAP
 
 <p align="center">
-  <img src="fiap-cpad-gs\predix\assets\logoPredix.png" alt="Predix Logo" width="250"/>
+  <img src="./assets/logoPredix.png" alt="Predix Logo" width="250"/>
 </p>
 
 ---
@@ -28,7 +28,7 @@ O **Predix** é uma plataforma inteligente de monitoramento espacial desenvolvid
 
 ## Login
 
-![Login](fiap-cpad-gs\predix\assets\login.jpeg)
+![Login](.\assets\login.jpeg)
 
 Tela responsável pela autenticação dos usuários antes do acesso à missão.
 
@@ -36,22 +36,22 @@ Tela responsável pela autenticação dos usuários antes do acesso à missão.
 
 ## Cadastro de Usuário
 
-![Cadastro](fiap-cpad-gs\predix\assets\cadastro.jpeg)
+![Cadastro](.\assets\cadastro.jpeg)
 
 Permite o cadastro de novos usuários na plataforma.
 
 ---
 ## Entrar em uma Missão
 
-![Missão](fiap-cpad-gs\predix\assets\entrarMissao.jpeg)
+![Missão](.\assets\entrarMissao.jpeg)
 
 Tela utilizada para acessar os dashboards de uma missão espacial.
 
 ---
 ## Cadastro de Missão
 
-![Missão (01)](fiap-cpad-gs\predix\assets\cadastroMissao.jpeg)
-![Missão (02)](fiap-cpad-gs\predix\assets\cadastroMissao2.jpeg)
+![Missão (01)](.\assets\cadastroMissao.jpeg)
+![Missão (02)](.\assets\cadastroMissao2.jpeg)
 
 Tela utilizada para criação e configuração inicial da missão espacial.
 
@@ -59,7 +59,7 @@ Tela utilizada para criação e configuração inicial da missão espacial.
 
 ## Dashboard Principal
 
-![Dashboard](fiap-cpad-gs\predix\assets\inicioDashboard.jpeg)
+![Dashboard](.\assets\inicioDashboard.jpeg)
 
 Visão geral dos principais indicadores da missão, incluindo combustível, sensores, dados orbitais e previsão inteligente.
 
@@ -67,7 +67,7 @@ Visão geral dos principais indicadores da missão, incluindo combustível, sens
 
 ## Dashboard de Combustível
 
-![Combustível](fiap-cpad-gs\predix\assets\combustivelDashboard.jpeg)
+![Combustível](.\assets\combustivelDashboard.jpeg)
 
 Monitoramento do nível de combustível e autonomia estimada da missão.
 
@@ -75,7 +75,7 @@ Monitoramento do nível de combustível e autonomia estimada da missão.
 
 ## Dashboard de Sensores
 
-![Sensores](fiap-cpad-gs\predix\assets\sensoresDashboard.jpeg)
+![Sensores](.\assets\sensoresDashboard.jpeg)
 
 Acompanhamento dos sensores críticos da nave e dos sistemas monitorados.
 
@@ -83,7 +83,7 @@ Acompanhamento dos sensores críticos da nave e dos sistemas monitorados.
 
 ## Dashboard de Órbita
 
-![Órbita](fiap-cpad-gs\predix\assets\orbitaDashboard.jpeg)
+![Órbita](.\assets\orbitaDashboard.jpeg)
 
 Visualização da estabilidade orbital e parâmetros relacionados à trajetória da missão.
 
