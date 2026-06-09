@@ -29,43 +29,43 @@ O **Predix** é uma plataforma inteligente de monitoramento espacial desenvolvid
 <table>
   <tr>
     <td align="center">
-      <img src="./assets/screenshots/login.jpeg" width="180"/><br/>
+      <img src="./assets/login.jpeg" width="180"/><br/>
       <strong>Login</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/cadastro.jpeg" width="180"/><br/>
+      <img src="./assets/cadastro.jpeg" width="180"/><br/>
       <strong>Cadastro</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/entrarMissao.jpeg" width="180"/><br/>
+      <img src="./assets/entrarMissao.jpeg" width="180"/><br/>
       <strong>Entrar em uma missão</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="./assets/screenshots/cadastroMissao.jpeg" width="180"/><br/>
+      <img src="./assets/cadastroMissao.jpeg" width="180"/><br/>
       <strong>Cadastro de Missão</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/cadastroMissao2.jpeg" width="180"/><br/>
+      <img src="./assets/cadastroMissao2.jpeg" width="180"/><br/>
       <strong>Cadastro de Missão</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/inicioDashboard.jpeg" width="180"/><br/>
+      <img src="./assets/inicioDashboard.jpeg" width="180"/><br/>
       <strong>Dashboard Principal</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="./assets/screenshots/combustivelDashboard.jpeg" width="180"/><br/>
+      <img src="./assets/combustivelDashboard.jpeg" width="180"/><br/>
       <strong>Dashboard de Combustível</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/sensoresDashboard.jpeg" width="180"/><br/>
+      <img src="./assets/sensoresDashboard.jpeg" width="180"/><br/>
       <strong>Dashboard de Sensores</strong>
     </td>
     <td align="center">
-      <img src="./assets/screenshots/orbitaDashboard.jpeg" width="180"/><br/>
+      <img src="./assets/orbitaDashboard.jpeg" width="180"/><br/>
       <strong>Dashboard de Órbita</strong>
   </tr>
 </table>
