@@ -1,7 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, Animated, SafeAreaView, Platform } from "react-native";
 
-// Adicionamos a prop 'backgroundColor' com o padrão '#00C853' (o seu verde atual)
 export default function SlideAlert({ slideAnim, message, backgroundColor = '#00C853' }) {
   if (!message) return null;
 

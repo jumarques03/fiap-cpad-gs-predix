@@ -52,9 +52,9 @@ Retorne EXCLUSIVAMENTE um objeto JSON válido, sem blocos de código markdown ou
 `;
 
 export async function analisarTelemetria(dadosAtuais, dadosPassados, limitesMissao) {
-  // Tratamento preventivo para evitar o Erro 400 caso os dados venham nulos ou indefinidos do contexto
+
   if (!dadosAtuais || !dadosPassados) {
-    return "✅ Aguardando carregamento dos dados históricos para análise preditiva...";
+    return "Aguardando carregamento dos dados históricos para análise preditiva...";
   }
 
   try {
