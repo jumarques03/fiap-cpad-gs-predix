@@ -26,66 +26,49 @@ O **Predix** é uma plataforma inteligente de monitoramento espacial desenvolvid
 
 # c) Telas do Aplicativo
 
-## Login
-
-![Login](.\assets\login.jpeg)
-
-Tela responsável pela autenticação dos usuários antes do acesso à missão.
-
----
-
-## Cadastro de Usuário
-
-![Cadastro](.\assets\cadastro.jpeg)
-
-Permite o cadastro de novos usuários na plataforma.
-
----
-## Entrar em uma Missão
-
-![Missão](.\assets\entrarMissao.jpeg)
-
-Tela utilizada para acessar os dashboards de uma missão espacial.
-
----
-## Cadastro de Missão
-
-![Missão (01)](.\assets\cadastroMissao.jpeg)
-![Missão (02)](.\assets\cadastroMissao2.jpeg)
-
-Tela utilizada para criação e configuração inicial da missão espacial.
-
----
-
-## Dashboard Principal
-
-![Dashboard](.\assets\inicioDashboard.jpeg)
-
-Visão geral dos principais indicadores da missão, incluindo combustível, sensores, dados orbitais e previsão inteligente.
-
----
-
-## Dashboard de Combustível
-
-![Combustível](.\assets\combustivelDashboard.jpeg)
-
-Monitoramento do nível de combustível e autonomia estimada da missão.
-
----
-
-## Dashboard de Sensores
-
-![Sensores](.\assets\sensoresDashboard.jpeg)
-
-Acompanhamento dos sensores críticos da nave e dos sistemas monitorados.
-
----
-
-## Dashboard de Órbita
-
-![Órbita](.\assets\orbitaDashboard.jpeg)
-
-Visualização da estabilidade orbital e parâmetros relacionados à trajetória da missão.
+<table>
+  <tr>
+    <td align="center">
+      <img src="./assets/screenshots/login.jpeg" width="180"/><br/>
+      <strong>Login</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/cadastro.jpeg" width="180"/><br/>
+      <strong>Cadastro</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/entrarMissao.jpeg" width="180"/><br/>
+      <strong>Entrar em uma missão</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/screenshots/cadastroMissao.jpeg" width="180"/><br/>
+      <strong>Cadastro de Missão</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/cadastroMissao2.jpeg" width="180"/><br/>
+      <strong>Cadastro de Missão</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/inicioDashboard.jpeg" width="180"/><br/>
+      <strong>Dashboard Principal</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/screenshots/combustivelDashboard.jpeg" width="180"/><br/>
+      <strong>Dashboard de Combustível</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/sensoresDashboard.jpeg" width="180"/><br/>
+      <strong>Dashboard de Sensores</strong>
+    </td>
+    <td align="center">
+      <img src="./assets/screenshots/orbitaDashboard.jpeg" width="180"/><br/>
+      <strong>Dashboard de Órbita</strong>
+  </tr>
+</table>
 
 ---
 
@@ -168,66 +151,12 @@ npx expo start
 
 ---
 
-# g) Decisões Técnicas
+# g) Vídeo de Demonstração
 
-## Estrutura do Projeto
-
-O aplicativo foi desenvolvido utilizando o Expo Router, permitindo uma organização modular das rotas e uma separação clara entre autenticação, configuração da missão e dashboards da aplicação.
-
-### Estrutura principal
-
-```text
-app/
-├── (auth)
-├── (mission)
-├── (tabs)
-├── dashboards
-├── alerts
-
-context/
-components/
-assets/
-services/
-```
-
-## Contexts Utilizados
-
-### AuthContext
-
-Responsável por:
-
-- Cadastro de usuários
-- Login
-- Logout
-- Persistência de sessão
-
-### MissionContext
-
-Responsável por:
-
-- Cadastro das missões
-- Dados gerais da missão
-- Combustível
-- Energia
-- Sensores
-- Informações orbitais
-
-## Persistência com AsyncStorage
-
-O AsyncStorage foi utilizado para armazenar:
-
-- Usuários cadastrados
-- Sessão ativa
-- Dados da missão
-- Histórico de alertas
-- Configurações do sistema
-
-# h) Vídeo de Demonstração
-
-[Clique aqui para assistir à demonstração](LINK_DO_VIDEO)
+[Clique aqui para assistir à demonstração](https://youtube.com/shorts/QoLzqZgEjuo)
 
 ---
 
-# i) Licença
+# h) Licença
 
-Este projeto foi desenvolvido para fins acadêmicos como parte da disciplina **Cross-Platform Application Development** da FIAP — Global Solution 2026.1.
+Este projeto foi desenvolvido para fins acadêmicos como parte da disciplina **Cross-Platform Application Development** da FIAP — Global Solution 2026.1. [Clique aqui para acessar a licensa de uso](./LICENSE)
